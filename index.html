@@ -20,42 +20,36 @@
     <!-- Creates Overall Grid --> 
     <div class="container">
 
-    <!-- FIRST ROW: "Crystal Collector" heading and instructions, with game reset button --> 
+    <!-- FIRST ROW: "Kiss Trivia" heading and instructions, with game reset button --> 
       <div class="jumbotron">
-        <!-- <h2>Crystal Collector</h2> -->
-        <p><strong>Kiss Trivia Game</strong> is a game of skill that requires a nimble mind and a quick mouse clicker.  At the beginning of the game, a random number is chosen by the computer.  Your job is to match that number by clicking on the crystals.  Each crystal is given a secret, random number.  Each time you click on a crystal, it adds the secret number to your total.  You win by clicking on the right combination of cystals to match the the target number chosen by the computer.  Play as often as you like.  The game will keep track of your Wins and Losses.</p>
-        <p><a class="btn btn-primary btn-md" id="reset" href="#" role="button">Game Reset</a></p>
+        <!-- <h2>Kiss Trivia</h2> -->
+        <p><strong>Kiss Trivia Game</strong> You wanted the best, you've got the best...the hottest band in the world!!  Well, actually, this is the hottest trivia game in the world.  Pay close attention, you are about to embark on a game of skill that requires a nimble mind and a quick mouse click.  Click "Start" to immerse yourself in all things Kiss.  This is timed, multiple choice game.  The game will keep track of your correct answers.  When you are ready click Start.</p>
+        <p><a class="btn btn-primary btn-md" id="start" href="#" role="button">Start</a></p>
       </div>
 
 
 
 
-    <!-- SECOND ROW: "Crystal Collector" Row of Crystals --> 
+    <!-- SECOND ROW: "Kiss Trivia" Row of Questions and Answers --> 
 
       <div class="row">
 
-          <!-- 1 of 1 Columns: Panel for Cystals -->
+          <!-- 1 of 1 Columns: Panel for Questions -->
           <div class="col-md-12">
 
-            <!-- "Wins" Box -->
+            <!-- "Question" Box -->
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Crystals</h3>
+                <h3 class="panel-title" id="question">Question </h3>
               </div>
-                <div id="crystals" class="panel-body">
-                  <div class="col-md-3">
-                    <a id="blue"><img class="img-responsive" src="./assets/images/blue.jpg"></a>
-                  </div>
-                  <div class="col-md-3">
-                    <a id="brown"><img class="img-responsive" src="./assets/images/brown.jpg"></a>
-                  </div>
-                  <div class="col-md-3">
-                    <a id="pink"><img class="img-responsive" src="./assets/images/pink.jpg"></a>
-                  </div>
-                  <div class="col-md-3">
-                    <a id="green"><img class="img-responsive" src="./assets/images/green.jpg"></a>
-                  </div>
+
+                <div class="list-group">
+                  <button type="button" class="list-group-item" id="choice0">Cras justo odio</button>
+                  <button type="button" class="list-group-item" id="choice1">Dapibus ac facilisis in</button>
+                  <button type="button" class="list-group-item" id="choice2">Morbi leo risus</button>
+                  <button type="button" class="list-group-item" id="choice3">Porta ac consectetur ac</button>
                 </div>
+
             </div>
           </div>
       </div>    
@@ -64,47 +58,40 @@
     <!-- THIRD ROW: Scoring Row --> 
     <div class="row">
 
-      <!-- 1 of 2 Columns: Left Column = Target/Computer Number -->
+      <!-- 1 of 3 Columns: Left Column = Answer -->
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Target Number</h3>
+            <h3 class="panel-title">Answer</h3>
           </div>
-        <div id="target-number" class="panel-body">
+        <div id="answer" class="panel-body">
         </div>
         </div>
       </div>  
 
-      <!-- 2 of 2 Columns: Right Column = User/Guess Number -->        
-       <div class="col-md-6">
+      <!-- 2 of 3 Columns: Middle Column = Timer -->        
+       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Your Number</h3>
+            <h3 class="panel-title">Timer</h3>
           </div>
-          <div id="user-number" class="panel-body">
+          <div id="timer" class="panel-body">
           </div>
         </div>
       </div>  
- 
 
-    </div>
-
-    <!-- FOURTH ROW: Win/Loss Row --> 
-    <div class="row">
-
-      <!-- 1 of 2 Columns: Left Column = Wins Number -->
-      <div class="col-md-6">
+      <!-- 3 of 3 Columns: Right Column = User/Guess Number -->        
+       <div class="col-md-3">
         <div class="panel panel-default">
-          <h4 style="margin-left: 10px">Wins: <span id="wins"></span></h4>
-        </div>  
-      </div>    
+          <div class="panel-heading">
+            <h3 class="panel-title">Your Score</h3>
+          </div>
+          <div id="score" class="panel-body">
+          </div>
+        </div>
+      </div>  
 
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <h4 style="margin-left: 10px">Losses: <span id="losses"></span></h4>
-        </div>  
-      </div>    
-    </div>   
+    </div> 
 
   </div>   
 
