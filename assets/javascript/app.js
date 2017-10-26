@@ -101,18 +101,28 @@ function resetGame (){
 function beginFirstQuestion (){
 
   // Set score to 0; Set index to 0
-  var score = 0;
-  var index = 0;
+  score = 0;
+  index = 0;
   correctAnswerIndex = questions[index].a;
 
-  getQuestion();
-  // $("#score").text(score);
-  // $("#question").text(questions[index].q);
-  // $("#choice0").text(questions[index].c[0]);
-  // $("#choice1").text(questions[index].c[1]);
-  // $("#choice2").text(questions[index].c[2]);
-  // $("#choice3").text(questions[index].c[3]);
-  // $("#answer").text(" - ");
+  // getQuestion();
+  $("#score").text(score);
+  $("#question").text(questions[index].q);
+  $("#choice0").text(questions[index].c[0]);
+  $("#choice1").text(questions[index].c[1]);
+  $("#choice2").text(questions[index].c[2]);
+  $("#choice3").text(questions[index].c[3]);
+  $("#answer").text(" - ");
+
+  // CONSOLE LOG QUESTION, CHOICES AND ANSWER
+  console.log("Question: " + questions[index].q);
+  console.log("Choice 0: " + questions[index].c[0]);
+  console.log("Choice 1: " + questions[index].c[1]);
+  console.log("Choice 2: " + questions[index].c[2]);
+  console.log("Choice 3: " + questions[index].c[3]);
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
 
   // Reset the timer
   clock.reset();
@@ -178,6 +188,10 @@ function getQuestion (){
 
 function evalAnswer0 (){
 
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
+
   if (questions[index].c[0] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
     $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
@@ -199,6 +213,10 @@ function evalAnswer0 (){
 
 function evalAnswer1 (){
 
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
+
   if (questions[index].c[1] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
     $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
@@ -218,6 +236,10 @@ function evalAnswer1 (){
 
 function evalAnswer2 (){
 
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
+
   if (questions[index].c[2] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
     $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
@@ -235,6 +257,10 @@ function evalAnswer2 (){
 }
 
 function evalAnswer3 (){
+
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
 
   if (questions[index].c[3] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
