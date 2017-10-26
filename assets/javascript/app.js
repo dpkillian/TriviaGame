@@ -33,7 +33,7 @@ var questions = [
     a: 1,
   }, {
     q: "When Marvel comics printed the first Kiss comic books, featuring the members as super-heroes, what was added as a publicity stunt?",
-    c: ["Coupon", "45 Record", "Concert Tickets", "Blood in the Ink"],
+    c: ["A Coupon", "A 45 Record", "Concert Tickets", "Blood in the Ink"],
     a: 3,
   }, {
     q: "What is the name of Ace Frehley's band when he's not touring with Kiss?",
@@ -42,12 +42,16 @@ var questions = [
   }, {
     q: "Which of the original 4 members solo albums has done the best?",
     c: ["Peter", "Paul", "Gene", "Ace"],
-    a: 2
+    a: 3
   }
 ];
 
-  var index = 4;
+
+  var score = 0;
+  var index = 7;
   var correctAnswerIndex = questions[index].a;
+
+  // CONSOLE LOG QUESTION, CHOICES AND ANSWER
   console.log("Question: " + questions[index].q);
   console.log("Choice 0: " + questions[index].c[0]);
   console.log("Choice 1: " + questions[index].c[1]);
@@ -55,16 +59,16 @@ var questions = [
   console.log("Choice 3: " + questions[index].c[3]);
   console.log("Answer: " + questions[index].c[correctAnswerIndex]);
 
-// startGame();
+// START GAME
 
 
 getQuestion();
 
 
-// RESETGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (RESET BUTTON) (RANDOMIZE QUESTION/ANSWERS, START TIMER)
+// STARTGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (START BUTTON) (RANDOMIZE QUESTION/ANSWERS, START TIMER)
 // 
 
-function resetGame (){
+function startGame (){
   // Clear the <div>
   $("#question").text("Questions");
   $("#choice0").text(" ");
@@ -80,7 +84,7 @@ function resetGame (){
   var index = 0;
 }
 
-// RESETGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (RESET BUTTON) (RANDOMIZE QUESTION/ANSWERS, START TIMER)
+// GETQUESTION FUNCTION TO GET QUESTION/ANSWERS AND START TIMER
 // 
 
 function getQuestion (){
@@ -103,8 +107,8 @@ function getQuestion (){
 
 }
 
-// NEXTQUESTION FUNCTION TO SELECT NEXT QUESTION (SELECT QUESTION/ANSWERS, START TIMER)
-//
+  // CLICK EVENTS (CRYSTALS AND GAME RESET)
+  // 
 
 
 
