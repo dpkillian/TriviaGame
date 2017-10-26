@@ -16,7 +16,7 @@ var questions = [
     c: ["Peter", "Paul", "Gene", "Ace"],
     a: 1,    
   }, {
-    a: "Who has a very hard time remembering the lyrics to his own songs?",
+    q: "Who has a very hard time remembering the lyrics to his own songs?",
     c: ["Peter", "Paul", "Gene", "Ace"],
     a: 2,
   }, {
@@ -42,7 +42,11 @@ var questions = [
   }, {
     q: "Which of the original 4 members solo albums has done the best?",
     c: ["Peter", "Paul", "Gene", "Ace"],
-    a: 3
+    a: 3,
+  }, {
+    q: "Done",
+    c: ["One", "Two", "Three", "Four"],
+    a: 0    
   }
 ];
 
@@ -54,22 +58,11 @@ var questions = [
   var intervalId;
 
 
-  // CONSOLE LOG QUESTION, CHOICES AND ANSWER
-  console.log("Question: " + questions[index].q);
-  console.log("Choice 0: " + questions[index].c[0]);
-  console.log("Choice 1: " + questions[index].c[1]);
-  console.log("Choice 2: " + questions[index].c[2]);
-  console.log("Choice 3: " + questions[index].c[3]);
-  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
-
-// START GAME
-startGame();
-
-// getQuestion();
+// RESET GAME ON PAGE LOAD
+resetGame();
 
 // This code will run as soon as the page loads
 window.onload = function() {
-  // $("#start").on("click", clock.start);
   $("#start").on("click", beginFirstQuestion);
   $("#next").on("click", getQuestion);
   $("#choice0").on("click", evalAnswer0);
@@ -81,10 +74,10 @@ window.onload = function() {
 
 };
 
-// STARTGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (START BUTTON) (GET QUESTION/ANSWERS, START TIMER)
+// RESETGAME FUNCTION TO RE-INITIALIZE GAME ON PAGE LOAD
 // 
 
-function startGame (){
+function resetGame (){
   // Clear the <div>
   $("#question").text("Questions");
   $("#choice0").text(" - ");
@@ -93,7 +86,7 @@ function startGame (){
   $("#choice3").text(" - ");
   $("#score").text("0");
   $("#timer").text("0");
-  $("#answer").text("None");
+  $("#answer").text(" - ");
 
   // Set score to 0; Set index to 0
   var score = 0;
@@ -106,9 +99,27 @@ function startGame (){
 // 
 
 function beginFirstQuestion (){
-  // Changes Button to "Next Question" <div>
-  $("#start").text("Next Question");
+
+  // Set score to 0; Set index to 0
+  var score = 0;
+  var index = 0;
+  correctAnswerIndex = questions[index].a;
+
   getQuestion();
+  // $("#score").text(score);
+  // $("#question").text(questions[index].q);
+  // $("#choice0").text(questions[index].c[0]);
+  // $("#choice1").text(questions[index].c[1]);
+  // $("#choice2").text(questions[index].c[2]);
+  // $("#choice3").text(questions[index].c[3]);
+  // $("#answer").text(" - ");
+
+  // Reset the timer
+  clock.reset();
+
+  // Start the timer
+  clock.start();
+
 
 };
 
@@ -117,8 +128,20 @@ function beginFirstQuestion (){
 
 function getQuestion (){
 
-  // Check to see if we are at the end of the questions array
+  // CONSOLE LOG QUESTION, CHOICES AND ANSWER
+  console.log("Question: " + questions[index].q);
+  console.log("Choice 0: " + questions[index].c[0]);
+  console.log("Choice 1: " + questions[index].c[1]);
+  console.log("Choice 2: " + questions[index].c[2]);
+  console.log("Choice 3: " + questions[index].c[3]);
+  console.log("Answer: " + questions[index].c[correctAnswerIndex]);
+  console.log(index);
+  console.log("----------------");
 
+
+
+
+  // Check to see if we are at the end of the questions array
   if (index <= 9){
   // Select the next question and place it in the <div>
   $("#question").text(questions[index].q);
@@ -126,22 +149,26 @@ function getQuestion (){
   $("#choice1").text(questions[index].c[1]);
   $("#choice2").text(questions[index].c[2]);
   $("#choice3").text(questions[index].c[3]);
-  $("#score").text("0");
-  $("#timer").text("0");
-  $("#answer").text(questions[index].c[correctAnswerIndex]);
+  $("#answer").text(" - ");
+
 
   // Reset the timer
   clock.reset();
 
-  // Reset the timer
+  // Start the timer
   clock.start();
 
 
   // Increment index for the next question
-  index++;
   } else {
     // stopGame()
     console.log("GAME OVER");
+    $("#answer").text("Game Over!  Your score was: " + ((100)*(score/100))+ "%");
+    $("#question").text("Questions");
+    $("#choice0").text(" - ");
+    $("#choice1").text(" - ");
+    $("#choice2").text(" - ");
+    $("#choice3").text(" - ");
   }
 
 };
@@ -153,9 +180,20 @@ function evalAnswer0 (){
 
   if (questions[index].c[0] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
+    $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+    score = score + 10;
+    $("#score").text(score);
   } else {
     console.log ("INCORRECT");
+    $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
   }
+
+  // document.getElementById("kiss-image").innerHTML ='<img class="img-responsive center-block" src="../images/image' + index + '.jpg">';
+  // $("#kiss-image").html("<img src=../images/image'" + index + "'.jpg/>");
+
+  clock.stop();
+  index++;
+  correctAnswerIndex = questions[index].a;
 
 }
 
@@ -163,9 +201,18 @@ function evalAnswer1 (){
 
   if (questions[index].c[1] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
+    $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+    score = score + 10;
+    $("#score").text(score);
   } else {
     console.log ("INCORRECT");
+    $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+
   }
+
+  clock.stop();
+  index++;
+  correctAnswerIndex = questions[index].a;
 
 }
 
@@ -173,9 +220,17 @@ function evalAnswer2 (){
 
   if (questions[index].c[2] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
+    $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+    score = score + 10;
+    $("#score").text(score);
   } else {
     console.log ("INCORRECT");
+    $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
   }
+
+  clock.stop();
+  index++;
+  correctAnswerIndex = questions[index].a;
 
 }
 
@@ -183,9 +238,27 @@ function evalAnswer3 (){
 
   if (questions[index].c[3] === questions[index].c[correctAnswerIndex]){
     console.log("CORRECT");
+    $("#answer").text("Correct!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+    score = score + 10;
+    $("#score").text(score);
+
   } else {
     console.log ("INCORRECT");
-  }
+    $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
+ }
+
+  clock.stop();
+  index++;
+  correctAnswerIndex = questions[index].a;
+
+}
+
+function timesUp (){
+  $("#answer").text("Sorry, times up!!  The answer was: "+ questions[index].c[correctAnswerIndex]);
+
+  clock.stop();
+  index++;
+  correctAnswerIndex = questions[index].a;
 
 }
 
@@ -224,6 +297,7 @@ var clock = {
 
     // If clock.time === 0, then stop the clock
       else {
+      timesUp();
       clock.stop;
     }
   },
@@ -231,149 +305,3 @@ var clock = {
 };
 
 
-// Countdown Timer from StackOverFlow
-// var timeleft = 10;
-// var downloadTimer = setInterval(function(){
-//   document.getElementById("progressBar").value = 10 - --timeleft;
-//   if(timeleft <= 0)
-//     clearInterval(downloadTimer);
-// },1000);
-
-
-  // // STARTNEW FUNCTION TO RE-INITIALIZE CRYSTAL VALUES & TARGET NUMBER
-  // // 
-
-  // startNew();
-
-  // function startNew() {
-  // blueCounter = 0;
-  // brownCounter = 0;
-  // pinkCounter = 0;
-  // greenCounter = 0;
-  // blueValue = Math.floor(Math.random() * 10) + 1;
-  // brownValue = Math.floor(Math.random() * 10) + 1;
-  // pinkValue = Math.floor(Math.random() * 10) + 1;
-  // greenValue = Math.floor(Math.random() * 10) + 1;
-  // console.log(blueValue);
-  // console.log(brownValue);
-  // console.log(pinkValue);
-  // console.log(greenValue);
-  // userNumber = 0;
-  // targetNumber = ((Math.floor(Math.random() * 3) + 1)*blueValue) + ((Math.floor(Math.random() * 3) + 1)*brownValue) + ((Math.floor(Math.random() * 3) + 1)*pinkValue) + ((Math.floor(Math.random() * 3) + 1)*greenValue);
-  // console.log(targetNumber);
-
-  // $("#user-number").text(userNumber);
-  // $("#target-number").text(targetNumber);
-  // }
-
-
-
-
-
-  // // CLICK EVENTS (CRYSTALS AND GAME RESET)
-  // // 
-
-  // // On-CLick event for blue button
-  // $("#blue").on("click", function() {
-  //   // console.log(startNew.blueValue);
-  //   blueCounter += blueValue;
-  //   userNumber = blueCounter + brownCounter + pinkCounter + greenCounter;
-  //   $("#user-number").text(userNumber);
-  //   // Check if User Matched Target Number (ie Win)
-  //   if (userNumber === targetNumber) {
-  //     totalWins += 1;
-  //     $("#wins").text(totalWins);
-  //     alert("You win!");
-  //     startNew();
-
-  //   // Check if User Overshot Target Number (ie Lose)
-  //   } else if (userNumber > targetNumber) {
-  //     totalLosses += 1;
-  //   $("#losses").text(totalLosses);
-  //     alert("You Lose!");
-  //     startNew();
-
-  //   }
-
-  // });
-
-  // // On-CLick event for brown button
-  // $("#brown").on("click", function() {
-  //   brownCounter += brownValue;
-  //   console.log(brownCounter);
-  //   userNumber = blueCounter + brownCounter + pinkCounter + greenCounter;
-  //   $("#user-number").text(userNumber);
-  //   // Check if User Matched Target Number (ie Win)
-  //   if (userNumber === targetNumber) {
-  //     // If the numbers match we'll celebrate the user's win.
-  //     totalWins += 1;
-  //     $("#wins").text(totalWins);
-  //     alert("You win!");
-  //     startNew();
-
-  //   // Check if User Overshot Target Number (ie Lose)
-  //   } else if (userNumber > targetNumber) {
-  //     totalLosses += 1;
-  //   $("#losses").text(totalLosses);
-  //     alert("You Lose!");
-  //     startNew();
-
-  //   }
-  // });
-
-  // // On-CLick event for pink button
-  // $("#pink").on("click", function() {
-  //   pinkCounter += pinkValue;
-  //   userNumber = blueCounter + brownCounter + pinkCounter + greenCounter;
-  //   $("#user-number").text(userNumber);    
-  //   // Check if User Matched Target Number (ie Win)
-  //   if (userNumber === targetNumber) {
-  //     // If the numbers match we'll celebrate the user's win.
-  //     totalWins += 1;
-  //     $("#wins").text(totalWins);
-  //     alert("You win!");
-  //     startNew();
-
-  //   // Check if User Overshot Target Number (ie Lose)
-  //   } else if (userNumber > targetNumber) {
-  //     totalLosses += 1;
-  //   $("#losses").text(totalLosses);
-  //     alert("You Lose!");
-  //     startNew();
-
-  //   }
-  // });
-
-  // // On-CLick event for green button
-  // $("#green").on("click", function() {
-  //   greenCounter += greenValue;
-  //   userNumber = blueCounter + brownCounter + pinkCounter + greenCounter;
-  //   $("#user-number").text(userNumber);    
-  //   // Check if User Matched Target Number (ie Win)
-  //   if (userNumber === targetNumber) {
-  //     // If the numbers match we'll celebrate the user's win.
-  //     totalWins += 1;
-  //     $("#wins").text(totalWins);
-  //     alert("You win!");
-  //     startNew();
-
-  //   // Check if User Overshot Target Number (ie Lose)
-  //   } else if (userNumber > targetNumber) {
-  //     totalLosses += 1;
-  //   $("#losses").text(totalLosses);
-  //     alert("You Lose!");
-  //     startNew();
-
-  //   }
-  // });
-
-
-  //   // On-CLick event for Game Reset
-  // $("#reset").on("click", function() {
-
-  // var totalWins = 0;
-  // var totalLosses = 0;
-  // $("#wins").text(totalWins);
-  // $("#losses").text(totalLosses);
-  // startNew();
-  // });
