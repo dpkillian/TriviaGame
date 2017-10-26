@@ -48,8 +48,11 @@ var questions = [
 
 
   var score = 0;
-  var index = 7;
+  var index = 0;
   var correctAnswerIndex = questions[index].a;
+  var clockRunning = false;
+  var intervalId;
+
 
   // CONSOLE LOG QUESTION, CHOICES AND ANSWER
   console.log("Question: " + questions[index].q);
@@ -60,10 +63,17 @@ var questions = [
   console.log("Answer: " + questions[index].c[correctAnswerIndex]);
 
 // START GAME
+startGame();
 
+// getQuestion();
 
-getQuestion();
+// This code will run as soon as the page loads
+window.onload = function() {
+  // $("#start").on("click", clock.start);
+  $("#start").on("click", beginFirstQuestion);
+  $("#next").on("click", getQuestion);
 
+};
 
 // STARTGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (START BUTTON) (RANDOMIZE QUESTION/ANSWERS, START TIMER)
 // 
@@ -71,10 +81,10 @@ getQuestion();
 function startGame (){
   // Clear the <div>
   $("#question").text("Questions");
-  $("#choice0").text(" ");
-  $("#choice1").text(" ");
-  $("#choice2").text(" ");
-  $("#choice3").text(" ");
+  $("#choice0").text(" - ");
+  $("#choice1").text(" - ");
+  $("#choice2").text(" - ");
+  $("#choice3").text(" - ");
   $("#score").text("0");
   $("#timer").text("0");
   $("#answer").text("None");
@@ -82,13 +92,23 @@ function startGame (){
   // Set score to 0; Set index to 0
   var score = 0;
   var index = 0;
-}
+};
+
+function beginFirstQuestion (){
+  // Changes Button to "Next Question" <div>
+  $("#start").text("Next Question");
+  getQuestion();
+
+};
 
 // GETQUESTION FUNCTION TO GET QUESTION/ANSWERS AND START TIMER
 // 
 
 function getQuestion (){
 
+  // Check to see if we are at the end of the questions array
+
+  if (index <= 9){
   // Select the next question and place it in the <div>
   $("#question").text(questions[index].q);
   $("#choice0").text(questions[index].c[0]);
@@ -100,36 +120,71 @@ function getQuestion (){
   $("#answer").text(questions[index].c[correctAnswerIndex]);
 
   // Reset the timer
+  clock.reset();
+
+  // Reset the timer
+  clock.start();
 
 
-  // Set score to 0
+  // Increment index for the next question
   index++;
+  } else {
+    // stopGame()
+    console.log("GAME OVER");
+  }
 
-}
+};
 
-  // CLICK EVENTS (CRYSTALS AND GAME RESET)
-  // 
+var clock = {
+  time: 10,
+
+  reset: function(){
+    clock.time = 10;
+    $("#timer").text("10");
+  },
+
+  start: function() {
+    // Use setInterval to start the count here and set the clock to running.
+    if (!clockRunning) {
+        intervalId = setInterval(clock.count, 1000);
+        clockRunning = true;
+    }
+  },  
+
+  stop: function() {
+    // Use clearInterval to stop the count here and set the clock to not be running.
+    clearInterval(intervalId);
+    clockRunning = false;
+    },
+
+  count: function() {
+
+    // DONE: increment time by 1, remember we cant use "this" here.
+    clock.time--;
+
+    if (clock.time >= 0){
+
+    // DONE: Get the current time, pass that into the stopwatch.timeConverter function,
+    //       and save the result in a variable.
+    console.log(clock.time);
+
+    // DONE: Use the variable we just created to show the converted time in the "display" div.
+    $("#timer").text(clock.time);
+    } else {
+      clock.stop;
+    }
+  },
+
+};
 
 
-
-
-
-
-
-  // // INITIALIZE VARIABLES
-  // // 
-
-  // var userNumber = 0;
-  // var targetNumber = 0;
-
-  // var totalWins = 0;
-  // var totalLosses = 0;
-
-  // // Insert Game Stats
-  // $("#user-number").text(userNumber);
-  // $("#target-number").text(targetNumber);
-  // $("#wins").text(totalWins);
-  // $("#losses").text(totalLosses);
+// Countdown Timer from StackOverFlow
+// var timeleft = 10;
+// var downloadTimer = setInterval(function(){
+//   document.getElementById("progressBar").value = 10 - --timeleft;
+//   if(timeleft <= 0)
+//     clearInterval(downloadTimer);
+// },1000);
 
 
   // // STARTNEW FUNCTION TO RE-INITIALIZE CRYSTAL VALUES & TARGET NUMBER
