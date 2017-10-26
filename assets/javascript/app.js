@@ -72,10 +72,16 @@ window.onload = function() {
   // $("#start").on("click", clock.start);
   $("#start").on("click", beginFirstQuestion);
   $("#next").on("click", getQuestion);
+  $("#choice0").on("click", evalAnswer0);
+  $("#choice1").on("click", evalAnswer1);
+  $("#choice2").on("click", evalAnswer2);
+  $("#choice3").on("click", evalAnswer3);
+
+
 
 };
 
-// STARTGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (START BUTTON) (RANDOMIZE QUESTION/ANSWERS, START TIMER)
+// STARTGAME FUNCTION TO RE-INITIALIZE GAME AFTER IT ENDS (START BUTTON) (GET QUESTION/ANSWERS, START TIMER)
 // 
 
 function startGame (){
@@ -93,6 +99,11 @@ function startGame (){
   var score = 0;
   var index = 0;
 };
+
+
+
+// BEGINFIRSTQUESTION FUNCTION TO CHANGE START BUTTON AND GET FIRST QUESTION
+// 
 
 function beginFirstQuestion (){
   // Changes Button to "Next Question" <div>
@@ -135,6 +146,49 @@ function getQuestion (){
 
 };
 
+// EVALANSWER FUNCTIONS CHECKS ANSWER
+// 
+
+function evalAnswer0 (){
+
+  if (questions[index].c[0] === questions[index].c[correctAnswerIndex]){
+    console.log("CORRECT");
+  } else {
+    console.log ("INCORRECT");
+  }
+
+}
+
+function evalAnswer1 (){
+
+  if (questions[index].c[1] === questions[index].c[correctAnswerIndex]){
+    console.log("CORRECT");
+  } else {
+    console.log ("INCORRECT");
+  }
+
+}
+
+function evalAnswer2 (){
+
+  if (questions[index].c[2] === questions[index].c[correctAnswerIndex]){
+    console.log("CORRECT");
+  } else {
+    console.log ("INCORRECT");
+  }
+
+}
+
+function evalAnswer3 (){
+
+  if (questions[index].c[3] === questions[index].c[correctAnswerIndex]){
+    console.log("CORRECT");
+  } else {
+    console.log ("INCORRECT");
+  }
+
+}
+
 var clock = {
   time: 10,
 
@@ -164,13 +218,12 @@ var clock = {
 
     if (clock.time >= 0){
 
-    // DONE: Get the current time, pass that into the stopwatch.timeConverter function,
-    //       and save the result in a variable.
-    console.log(clock.time);
-
-    // DONE: Use the variable we just created to show the converted time in the "display" div.
+    // Write clock.time to the <div>
     $("#timer").text(clock.time);
-    } else {
+    } 
+
+    // If clock.time === 0, then stop the clock
+      else {
       clock.stop;
     }
   },
