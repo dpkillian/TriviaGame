@@ -52,16 +52,16 @@
 
       <div class="row">
 
-          <!-- 1 of 1 Columns: Panel for Questions -->
+          <!-- 1 of 1 Columns: Panel for Questions and Choices-->
           <div class="col-md-12">
 
-            <!-- "Question" Box -->
+            <!-- "Question" Panel -->
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title" id="question">Question </h3>
-
               </div>
 
+            <!-- "Choices" Panel -->
                 <div class="list-group">
                   <button type="button" class="list-group-item" id="choice0">Cras justo odio</button>
                   <button type="button" class="list-group-item" id="choice1">Dapibus ac facilisis in</button>
@@ -73,7 +73,10 @@
           </div>
       </div>    
 
-    <!-- THIRD ROW: Scoring Row --> 
+
+
+    <!-- FOURTH ROW: Answer, Timing and Scoring Row --> 
+
     <div class="row">
 
       <!-- 1 of 3 Columns: Left Column = Answer -->
@@ -82,9 +85,21 @@
             <div class="panel-heading">
               <h3 class="panel-title">Answer</h3>
             </div>
-          <div id="answer" class="panel-body">
+          <div id="answer-wide" class="panel-body">
+
+            <div class="col-md-6" id="answer" class="panel-body">
+            </div>
+
+            <div class="col-md-6">
+              <!-- <a><img id="kiss-image" class="img-responsive"></a> -->
+              <!-- <a id="kiss-image"><img class="img-responsive" src="./assets/images/image0.jpg"></a> -->
+              <!-- <img class="img-responsive" src="./assets/images/image0.jpg"> -->
+              <img class="img-responsive" id="kiss-image">
+
+            </div>
 
           </div>
+
         </div>
       </div>  
 
@@ -99,7 +114,7 @@
         </div>
       </div>  
 
-      <!-- 3 of 3 Columns: Right Column = User/Guess Number -->        
+      <!-- 3 of 3 Columns: Right Column = User Score -->        
        <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading">

@@ -58,6 +58,7 @@ var questions = [
   var intervalId;
 
 
+
 // RESET GAME ON PAGE LOAD
 resetGame();
 
@@ -148,7 +149,8 @@ function getQuestion (){
   console.log(index);
   console.log("----------------");
 
-
+  // Clear image
+  $(".img-responsive").attr("src", "");
 
 
   // Check to see if we are at the end of the questions array
@@ -173,7 +175,7 @@ function getQuestion (){
   } else {
     // stopGame()
     console.log("GAME OVER");
-    $("#answer").text("Game Over!  Your score was: " + ((100)*(score/100))+ "%");
+    $("#answer").text("Game Over!  Your score was: " + ((100)*(score/100))+ "%." + "Have another go at it!!");
     $("#question").text("Questions");
     $("#choice0").text(" - ");
     $("#choice1").text(" - ");
@@ -202,8 +204,7 @@ function evalAnswer0 (){
     $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
   }
 
-  // document.getElementById("kiss-image").innerHTML ='<img class="img-responsive center-block" src="../images/image' + index + '.jpg">';
-  // $("#kiss-image").html("<img src=../images/image'" + index + "'.jpg/>");
+  $(".img-responsive").attr("src", "./assets/images/image" + index + ".jpg");
 
   clock.stop();
   index++;
@@ -228,6 +229,8 @@ function evalAnswer1 (){
 
   }
 
+  $(".img-responsive").attr("src", "./assets/images/image" + index + ".jpg");
+
   clock.stop();
   index++;
   correctAnswerIndex = questions[index].a;
@@ -249,6 +252,8 @@ function evalAnswer2 (){
     console.log ("INCORRECT");
     $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
   }
+
+  $(".img-responsive").attr("src", "./assets/images/image" + index + ".jpg");
 
   clock.stop();
   index++;
@@ -273,6 +278,8 @@ function evalAnswer3 (){
     $("#answer").text("Sorry, wrong answer!!  The answer was: " + questions[index].c[correctAnswerIndex]);
  }
 
+  $(".img-responsive").attr("src", "./assets/images/image" + index + ".jpg");
+
   clock.stop();
   index++;
   correctAnswerIndex = questions[index].a;
@@ -281,6 +288,7 @@ function evalAnswer3 (){
 
 function timesUp (){
   $("#answer").text("Sorry, times up!!  The answer was: "+ questions[index].c[correctAnswerIndex]);
+  $(".img-responsive").attr("src", "./assets/images/image" + index + ".jpg");
 
   clock.stop();
   index++;
