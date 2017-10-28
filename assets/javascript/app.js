@@ -57,6 +57,8 @@ var questions = [
   var clockRunning = false;
   var intervalId;
 
+  var audioElement = document.createElement("audio");
+      audioElement.setAttribute("src", "./assets/sounds/kiss-sample.mp3");
 
 
 // RESET GAME ON PAGE LOAD
@@ -70,6 +72,7 @@ window.onload = function() {
   $("#choice1").on("click", evalAnswer1);
   $("#choice2").on("click", evalAnswer2);
   $("#choice3").on("click", evalAnswer3);
+  audioElement.play();
 
 
 
