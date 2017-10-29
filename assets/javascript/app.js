@@ -58,8 +58,8 @@ var questions = [
   var intervalId;
 
   var audioElement = document.createElement("audio");
-      audioElement.setAttribute("src", "./assets/sounds/kiss-sample.mp3");
-
+      audioElement.setAttribute("src", "./assets/sounds/kiss-sample.m4a");
+      audioElement.play();
 
 // RESET GAME ON PAGE LOAD
 resetGame();
